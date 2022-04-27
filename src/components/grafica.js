@@ -19,12 +19,18 @@ ChartJS.register(
 
 const Grafica = () => {
 
+    let datos = [];
+    for (let index = 0; index < 4; index++) {
+        datos[index] = Math.round(Math.random() * (1000 - 500) + 100);
+    }
+    console.log(datos)
+
     const Data = {
         labels: ['January', 'February', 'March', 'April'],
         datasets: [{
             label: 'Ventas',
             backgroundColor: 'rgba(10,158,226,1)',
-            data: [498, 866, 976, 54],
+            data: datos,
         }]
     };
     const opciones = {
