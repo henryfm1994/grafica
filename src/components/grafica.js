@@ -16,7 +16,6 @@ ChartJS.register(
     Tooltip,
     Legend
 );
-// import axios from 'axios';
 
 const Grafica = () => {
 

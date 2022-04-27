@@ -4,7 +4,6 @@ import Header from "./components/header";
 import Select from './components/select';
 
 function App() {
-  // const [data, setData] = useState();
   return (
     <div>
       <Header />
