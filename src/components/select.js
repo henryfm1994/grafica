@@ -1,15 +1,28 @@
 import React, { Fragment, useState } from 'react';
-import Grafica from './grafica';
 
 const Select = () => {
 
     const [categoria, setCategoria] = useState('ropa');
     const [producto, setProducto] = useState('Camisa');
-    const [marca, setMarca] = useState('Adidas');
+    // const [marca, setMarca] = useState('Adidas');
+    const [frutasCamisa, setFrutasCamisa] = useState('Camisa')
+    const [cerealesPantalon, setCerealesPantalon] = useState('Pantalon')
+    const [marcaTipo1, setMarcaTipo1] = useState('Adidas')
+    const [marcaTipo2, setMarcaTipo2] = useState('Nike')
 
     const cambiarCat = (e) => {
         setCategoria(e.target.value);
-        console.log(categoria)
+        if (categoria === 'comida') {
+            setFrutasCamisa('Frutas')
+            setCerealesPantalon('Cereales')
+            if (producto === 'Frutas') {
+                setMarcaTipo1('Platano');
+                setMarcaTipo2('Mango');
+            } else {
+                setMarcaTipo1('Trigo');
+                setMarcaTipo2('Maiz');
+            }
+        }
     }
 
     const cambiarProd = (e) => {
@@ -17,51 +30,49 @@ const Select = () => {
     }
 
     const cambiarMarca = (e) => {
-        setMarca(e.target.value);
+        setMarcaTipo1(e.target.value);
     }
 
-    let frutasCamisa = 'Camisa';
-    let CerealesPantalon = 'Pantalon';
-    let marcaTipo1 = 'Adidas';
-    let marcaTipo2 = 'Nike';
 
-    if (categoria === 'comida') {
-        frutasCamisa = 'Frutas';
-        CerealesPantalon = 'Cereales';
-        if (producto === 'Frutas') {
-            let marcaTipo1 = 'Platano';
-            let marcaTipo2 = 'Mango';
-        }else{
-            let marcaTipo1 = 'Trigo';
-            let marcaTipo2 = 'Maiz';
-        }
-}
-    else {
-        frutasCamisa = 'Camisa';
-        CerealesPantalon = 'Pantalon';
-    }
+    // if (categoria === 'comida') {
+    //     frutasCamisa = 'Frutas';
+    //     CerealesPantalon = 'Cereales';
+    //     if (producto === 'Frutas') {
+    //         marcaTipo1 = 'Platano';
+    //         marcaTipo2 = 'Mango';
+    //     } else {
+    //         marcaTipo1 = 'Trigo';
+    //         marcaTipo2 = 'Maiz';
+    //     }
+    // }
+    // else {
+    //     frutasCamisa = 'Camisa';
+    //     CerealesPantalon = 'Pantalon';
+    // }
 
     switch (producto) {
         case 'Frutas':
-            marcaTipo1 = 'Platano';
-            marcaTipo2 = 'Mango';
+            setMarcaTipo1('Platano');
+            setMarcaTipo2('Mango');
             break;
 
         case 'Cereales':
-            marcaTipo1 = 'Trigo';
-            marcaTipo2 = 'Maiz';
+            setMarcaTipo1('Trigo');
+            setMarcaTipo2('Maiz');
             break;
 
         case 'Camisa':
-            marcaTipo1 = 'Adidas';
-            marcaTipo2 = 'Nike';
+            setMarcaTipo1('Adidas');
+            setMarcaTipo2('Nike');
             break;
 
-        case 'Pantalon':
-            marcaTipo1 = 'Puma';
-            marcaTipo2 = 'Levi';
+        default:
+            setMarcaTipo1('Puma');
+            setMarcaTipo2('Levi');
             break;
     }
+
+    console.log(categoria)
 
     return (
         <Fragment>
@@ -75,7 +86,7 @@ const Select = () => {
                     <label className="producto">Producto: </label>
                     <select id='producto' onChange={cambiarProd}>
                         <option value={frutasCamisa}>{frutasCamisa}</option>
-                        <option value={CerealesPantalon}>{CerealesPantalon}</option>
+                        <option value={cerealesPantalon}>{cerealesPantalon}</option>
                     </select>
                     <label className="marca">Marca: </label>
                     <select id='marca' onChange={cambiarMarca}>
