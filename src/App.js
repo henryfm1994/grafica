@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './assets/css/App.css';
 import Grafica from "./components/grafica";
 import rojo from './assets/images/rojo.jpg'
+import axios from 'axios';
 
 function App() {
 
@@ -24,7 +25,19 @@ function App() {
     setMarTipo(e.target.value);
   }
 
+  const [ramdon, setRamdon] = useState([]);
+
+  const getData = () => {
+    axios.get("http://localhost:3001/")
+      .then(res => {
+        setRamdon(res.data)
+      })
+  }
+
   useEffect(() => {
+
+    getData()
+
     if (categoria === 'comida') {
       setProducto1('Frutas')
       setProducto2('Cereales')
@@ -40,6 +53,8 @@ function App() {
   }, [categoria])
 
   useEffect(() => {
+
+    getData()
 
     switch (producto) {
       case 'Frutas':
@@ -65,6 +80,7 @@ function App() {
   }, [producto])
 
   useEffect(() => {
+    getData()
   }, [marTipo])
 
   return (
@@ -98,7 +114,7 @@ function App() {
           </select>
         </form>
       </div>
-      <Grafica />
+      <Grafica getData={getData} ramdon={ramdon} setRamdon={setRamdon} />
     </div>
   );
 }

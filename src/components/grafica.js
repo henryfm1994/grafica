@@ -17,20 +17,29 @@ ChartJS.register(
     Legend
 );
 
-const Grafica = () => {
+const Grafica = ({ ramdon }) => {
 
-    let datos = [];
-    for (let index = 0; index < 4; index++) {
-        datos[index] = Math.round(Math.random() * (1000 - 500) + 100);
-    }
-    console.log(datos)
+    // const [ramdon, setRamdon] = useState([]);
+
+    // const getData = () => {
+    //     axios.get("http://localhost:3001/")
+    //         .then(res => {
+    //             setRamdon(res.data)
+    //         })
+    // }
+
+    // let datos = [];
+    // for (let index = 0; index < 4; index++) {
+    //     datos[index] = Math.round(Math.random() * (1000 - 500) + 100);
+    // }
 
     const Data = {
+
         labels: ['January', 'February', 'March', 'April'],
         datasets: [{
             label: 'Ventas',
             backgroundColor: 'rgba(10,158,226,1)',
-            data: datos,
+            data: ramdon,
         }]
     };
     const opciones = {
@@ -45,8 +54,10 @@ const Grafica = () => {
             y: {
                 display: true,
                 title: {
-                  display: true,
-                  text: 'Ventas',}},
+                    display: true,
+                    text: 'Ventas',
+                }
+            },
         },
         plugins: {
             title: {
@@ -75,6 +86,7 @@ const Grafica = () => {
         maintainAspectRatio: false,
         responsive: true,
     }
+
     return (
         <div className='grafica'>
             <Bar data={Data} options={opciones} />
